@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lily Coffee - Салон красоты</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coffee-light: #f8f4f0;
+            --coffee-medium: #e8d8c8;
+            --coffee-dark: #c4a484;
+            --coffee-darker: #8b6b4d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--coffee-light);
+            color: #5a4a42;
+        }
+        
+        .navbar {
+            background-color: var(--coffee-light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(244, 237, 228, 0.7), rgba(244, 237, 228, 0.7)), 
+                        url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 150px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .animated-gradient-text {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #f8f4f0, #e8d8c8, #c4a484, #8b6b4d, #c4a484, #e8d8c8);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 8s ease infinite;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            color: var(--coffee-darker);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--coffee-dark);
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .btn-coffee {
+            background-color: var(--coffee-dark);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-coffee:hover {
+            background-color: var(--coffee-darker);
+            color: white;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--coffee-dark);
+        }
+        
+        .footer {
+            background-color: var(--coffee-darker);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer a {
+            color: var(--coffee-medium);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--coffee-dark);
+        }
+        
+        .coffee-bg {
+            background-color: var(--coffee-medium);
+        }
+        
+        .team-member {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .team-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 5px solid var(--coffee-medium);
+        }
+        
+        .price-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-top: 5px solid var(--coffee-dark);
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            color: var(--coffee-darker);
+            margin: 20px 0;
+        }
+        
+        .contact-info {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--coffee-dark);
+            margin-bottom: 15px;
+        }
+        
+        /* Анимация для фона заголовка */
+        .gradient-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #f8f4f0, #e8d8c8, #c4a484, #8b6b4d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Дополнительная анимация для привлечения внимания */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        /* Альтернативная анимация - появление и исчезание */
+        @keyframes lilyFade {
+            0%, 100% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            20%, 80% {
+                transform: scale(1) rotate(5deg);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.1) rotate(-5deg);
+                opacity: 1;
+            }
+        }
+
+        .lily-fade {
+            animation: lilyFade 8s ease-in-out infinite;
+        }
+        /* Анимированные лилии - уменьшенные */
+        .animated-lily {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .lily-top-right {
+            top: 20px;
+            right: 20px;
+        }
+
+        .lily-bottom-left {
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .lily-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Обновленная анимация для уменьшенных лилий */
+        @keyframes lilyFade {
+            0%, 100% {
+                transform: scale(0.5) rotate(0deg);
+                opacity: 0;
+            }
+            20%, 80% {
+                transform: scale(0.8) rotate(5deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(0.9) rotate(-5deg);
+                opacity: 0.8;
+            }
+        }
+
+        .lily-fade {
+            animation: lilyFade 8s ease-in-out infinite;
+        }
+
+        /* Анимация для лепестков */
+        .lily-petal {
+            animation: petalMove 4s ease-in-out infinite;
+        }
+
+        @keyframes petalMove {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        /* Для мобильных устройств */
+        @media (max-width: 768px) {
+            .animated-lily {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .lily-top-right {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .lily-bottom-left {
+                bottom: 15px;
+                left: 15px;
+            }
+        }
+        .lead {
+            font-family: 'Caveat', cursive;
+            font-weight: 400;
+            font-size: 24px;
+            color: var(--coffee-darker);
+        }
+        @media (max-width: 768px) {
+            .lead {
+                font-size: 20px;
+            }
+        }
+        .service-icon-container {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--coffee-medium), var(--coffee-light));
+        }
+
+        .service-icon {
+            font-size: 80px;
+            color: var(--coffee-darker);
+            opacity: 0.8;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#" style="color: var(--coffee-darker);">
+                <i class="bi bi-flower1 me-2"></i>Lily Coffee
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Цены</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Контакты</a>
+                    </li>
+                </ul>
+                <a href="#contact" class="btn btn-coffee ms-lg-3 mt-3 mt-lg-0">Записаться</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Герой секция -->
+    <section class="hero-section text-center" id="home">
+        <div class="gradient-bg"></div>
+        <!-- Анимированные лилии -->
+        <div class="animated-lily lily-top-right">
+            <svg class="lily-svg lily-fade" viewBox="0 0 100 100">
+                <path class="lily-petal" fill="#f5eef8" d="M50,20 C60,10 80,15 80,30 C80,45 65,50 50,60 C35,50 20,45 20,30 C20,15 40,10 50,20 Z" style="animation-delay: 0s"/>
+                <path class="lily-petal" fill="#e8d8c8" d="M30,40 C20,30 15,50 25,60 C35,70 50,65 55,55 C45,50 40,35 30,40 Z" style="animation-delay: 0.5s"/>
+                <path class="lily-petal" fill="#f8f4f0" d="M70,40 C80,30 85,50 75,60 C65,70 50,65 45,55 C55,50 60,35 70,40 Z" style="animation-delay: 1s"/>
+                <circle fill="#c4a484" cx="50" cy="50" r="8"/>
+            </svg>
+        </div>
+
+        <div class="animated-lily lily-bottom-left">
+            <svg class="lily-svg lily-fade" viewBox="0 0 100 100">
+                <path class="lily-petal" fill="#f5eef8" d="M50,20 C60,10 80,15 80,30 C80,45 65,50 50,60 C35,50 20,45 20,30 C20,15 40,10 50,20 Z" style="animation-delay: 0.2s"/>
+                <path class="lily-petal" fill="#e8d8c8" d="M30,40 C20,30 15,50 25,60 C35,70 50,65 55,55 C45,50 40,35 30,40 Z" style="animation-delay: 0.7s"/>
+                <path class="lily-petal" fill="#f8f4f0" d="M70,40 C80,30 85,50 75,60 C65,70 50,65 45,55 C55,50 60,35 70,40 Z" style="animation-delay: 1.2s"/>
+                <circle fill="#c4a484" cx="50" cy="50" r="8"/>
+            </svg>
+        </div>
+       
+        <div class="container">
+            <h1 class="animated-gradient-text mb-4">Салон красоты Lily Coffee</h1>
+            <p class="lead mb-4">Гармония элегантности и естественной красоты в уютной атмосфере кофейного утра</p>
+            <a href="#services" class="btn btn-coffee btn-lg me-2 pulse">Наши услуги</a>
+            <a href="#contact" class="btn btn-outline-coffee btn-lg" style="border-color: var(--coffee-dark); color: var(--coffee-darker);">Записаться онлайн</a>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section class="py-5" id="services">
+        <div class="container">
+            <h2 class="text-center section-title">Наши услуги</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <div class="service-icon-container">
+                        <i class="fas fa-crown service-icon"></i>
+                    </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Парикмахерские услуги</h5>
+                            <p class="card-text">Стрижки, укладки, окрашивание, лечение волос от ведущих мастеров.</p>
+                            <a href="#" class="btn btn-coffee">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <div class="service-icon-container">
+                            <i class="fas fa-hand-sparkles service-icon"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Маникюр и педикюр</h5>
+                            <p class="card-text">Классический, аппаратный, европейский маникюр и педикюр.</p>
+                            <a href="#" class="btn btn-coffee">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card">
+                        <div class="service-icon-container">
+                            <i class="fas fa-spa service-icon"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Косметология</h5>
+                            <p class="card-text">Уходовые процедуры, чистка лица, пилинги, массаж и многое другое.</p>
+                            <a href="#" class="btn btn-coffee">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section class="py-5 coffee-bg" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">О нашем салоне</h2>
+                    <p>Салон красоты "Lily Coffee" - это место, где встречаются элегантность и комфорт. Наша философия - подчеркивать естественную красоту каждого клиента, создавая гармоничный образ.</p>
+                    <p>Мы используем только профессиональную косметику премиум-класса и современное оборудование. Наши мастера регулярно проходят обучение и повышают квалификацию.</p>
+                    <p>В уютной атмосфере нашего салона, наполненной ароматами кофе и цветов, вы сможете расслабиться и получить настоящее удовольствие от процедур.</p>
+                    <a href="#contact" class="btn btn-coffee">Посетить наш салон</a>
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <img src="interier_salona_krasoty_lily_coffee.jpg" class="img-fluid rounded" alt="Интерьер салона Lily Coffee">
+                </div>
+            </div>
+            
+            <!-- Команда -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="text-center section-title">Наша команда</h3>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="Maria.jpg" class="team-img" alt="Мария">
+                        <h5>Мария</h5>
+                        <p>Топ-стилист</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="Anna.jpg" class="team-img" alt="Анна">
+                        <h5>Анна</h5>
+                        <p>Косметолог</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="Elena.jpg" class="team-img" alt="Елена">
+                        <h5>Елена</h5>
+                        <p>Мастер маникюра</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="team-member">
+                        <img src="Olga.jfif" class="team-img" alt="Ольга">
+                        <h5>Ольга</h5>
+                        <p>Визажист</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Цены -->
+    <section class="py-5" id="pricing">
+        <div class="container">
+            <h2 class="text-center section-title">Наши цены</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="price-card">
+                        <h4>Базовый уход</h4>
+                        <div class="price">от 1500₽</div>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">Стрижка женская</li>
+                            <li class="mb-2">Укладка</li>
+                            <li class="mb-2">Классический маникюр</li>
+                            <li class="mb-2">Чистка лица</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-coffee">Записаться</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="price-card">
+                        <h4>Премиум пакет</h4>
+                        <div class="price">от 3500₽</div>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">Стрижка + окрашивание</li>
+                            <li class="mb-2">СПА-маникюр</li>
+                            <li class="mb-2">Уходовая процедура для лица</li>
+                            <li class="mb-2">Массаж головы</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-coffee">Записаться</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="price-card">
+                        <h4>Полный образ</h4>
+                        <div class="price">от 6000₽</div>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">Стрижка + окрашивание</li>
+                            <li class="mb-2">Комплексный уход для лица</li>
+                            <li class="mb-2">Макияж</li>
+                            <li class="mb-2">Маникюр + педикюр</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-coffee">Записаться</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="py-5 coffee-bg">
+        <div class="container">
+            <h2 class="text-center section-title">Отзывы клиентов</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"Прекрасный салон с уютной атмосферой. Мария сделала мне идеальную стрижку, которую я так долго искала. Обязательно вернусь!"</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <!-- <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" width="50" height="50" alt="Клиент"> -->
+                            <div>
+                                <h6 class="mb-0">Анна К.</h6>
+                                <small>Клиент</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"Регулярно посещаю салон для процедур по уходу за кожей. Результат всегда превосходит ожидания. Спасибо Анне за профессионализм!"</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <!-- <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" width="50" height="50" alt="Клиент"> -->
+                            <div>
+                                <h6 class="mb-0">Елена С.</h6>
+                                <small>Клиент</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"Лучший маникюр в городе! Елена - настоящий профессионал. Всегда аккуратно, качественно и с вниманием к деталям. Рекомендую!"</p>
+                        <div class="d-flex align-items-center mt-3">
+                            <!-- <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" width="50" height="50" alt="Клиент"> -->
+                            <div>
+                                <h6 class="mb-0">Ольга М.</h6>
+                                <small>Клиент</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Контакты -->
+        <section class="py-5" id="contact">
+            <div class="container">
+                <h2 class="text-center section-title">Свяжитесь с нами</h2>
+                <div class="row">
+                    <div class="col-md-8">
+                        <form action="https://formspree.io/f/mjkaoknl" method="POST">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Ваше имя *</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Телефон *</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="service" class="form-label">Услуга</label>
+                                <select class="form-select" id="service" name="service">
+                                    <option selected>Выберите услугу</option>
+                                    <option value="Парикмахерские услуги">Парикмахерские услуги</option>
+                                    <option value="Маникюр и педикюр">Маникюр и педикюр</option>
+                                    <option value="Косметология">Косметология</option>
+                                    <option value="Визаж">Визаж</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Сообщение</label>
+                                <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-coffee">Отправить заявку</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="contact-info text-center">
+                            <div class="contact-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <h5>Адрес</h5>
+                            <p>ул. Цветочная, 15<br>Москва, Россия</p>
+                        </div>
+                        <div class="contact-info text-center">
+                            <div class="contact-icon">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                            <h5>Телефон</h5>
+                            <p>+7 (495) 123-45-67</p>
+                        </div>
+                        <div class="contact-info text-center">
+                            <div class="contact-icon">
+                                <i class="bi bi-clock"></i>
+                            </div>
+                            <h5>Часы работы</h5>
+                            <p>Пн-Пт: 9:00 - 21:00<br>Сб-Вс: 10:00 - 20:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5><i class="bi bi-flower1 me-2"></i>Lily Coffee</h5>
+                    <p>Салон красоты, где ваша естественная красота раскрывается в уютной атмосфере кофе и цветов.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="bi bi-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Услуги</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Парикмахерские</a></li>
+                        <li><a href="#">Маникюр</a></li>
+                        <li><a href="#">Косметология</a></li>
+                        <li><a href="#">Визаж</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Компания</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Команда</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Подписка на новости</h5>
+                    <p>Будьте в курсе наших акций и новинок</p>
+                    <form id="subscribe-form">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Ваш email" id="subscribe-email" required>
+                            <button class="btn btn-coffee" type="submit">Подписаться</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="mt-4 mb-3" style="border-color: rgba(255,255,255,0.1);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 Lily Coffee. Все права защищены.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="me-3">Политика конфиденциальности</a>
+                    <a href="#">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Подписка на рассылку
+    document.getElementById('subscribe-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('subscribe-email').value;
+        
+        if (!email) {
+            alert('Пожалуйста, введите email');
+            return;
+        }
+        
+        // Здесь будет отправка на сервер рассылок
+        alert('Спасибо за подписку! Проверьте почту для подтверждения.');
+        this.reset();
+    });
+    </script>
+</body>
+</html>
